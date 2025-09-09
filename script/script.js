@@ -43,7 +43,7 @@ const loadCards = (category_name = "All Tree", button = null) => {
     const spinner = document.getElementById('spinner');
     const cardContainer = document.getElementById('card-container');
 
-    spinner.classList.remove('display-none');
+     spinner.classList.remove('hidden');
     console.log(category_name);
     const url = `https://openapi.programming-hero.com/api/plants`;
     fetch(url)
@@ -53,7 +53,7 @@ const loadCards = (category_name = "All Tree", button = null) => {
             if (category_name !== "All Tree") {
                 filteredCards = data.plants.filter(card => card.category === category_name);
             }
-            spinner.classList.add('hidden');
+           spinner.classList.add('hidden');
             displayCards(filteredCards);
             document.querySelectorAll('.category-btn').forEach(btn => {
                 btn.classList.remove('bg-[#157C3D]', 'text-white');
@@ -174,10 +174,10 @@ const renderCart = () => {
         itemDiv.className = "flex justify-between items-center bg-gray-100 p-2 rounded";
 
         itemDiv.innerHTML = `
-    <div class="flex-1 text-sm"> <!-- smaller text -->
+    <div class="flex-1 text-sm"> 
         <p class="font-semibold">${item.name}</p>
     </div>
-    <div class="flex items-center gap-1 text-sm"> <!-- smaller text -->
+    <div class="flex items-center gap-1 text-sm"> 
         <button class="text-red-600 font-bold px-1 py-1 rounded" data-index="${index}" data-action="decrease">-</button>
         <span>${item.quantity}</span>
         <button class="text-green-600 font-bold px-1 py-1 rounded" data-index="${index}" data-action="increase">+</button>
