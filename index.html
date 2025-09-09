@@ -99,12 +99,22 @@
 
                 <!-- card section  -->
                 <div id="card-container" class="md:w-[62%] grid grid-cols-1 md:grid md:grid-cols-3 md:gap-3">
+                        <div id="spinner" class="flex justify-center items-center py-10 hidden md:col-span-3">
+                            <div class="w-12 h-12 border-4 border-dashed border-green-500 rounded-full animate-spin"></div>
+                        </div>
                     <!-- cards will be added here dynamically -->
                 </div>
 
                 <!-- cart section  -->
-                <div class="border md:w-[18%]">
-                    cart section
+                <div class=" md:w-[18%] p-4" id="cart-container">
+                    <h3 class="text-lg font-bold mb-4">Cart</h3>
+                    <!-- Cart items will be dynamically added here -->
+                    <div id="cart-items" class="space-y-3"></div>
+                
+                    <!-- Total Amount -->
+                    <div class="mt-4 border-t pt-3 font-bold">
+                        Total: <span id="cart-total">0</span> <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                    </div>
                 </div>
             </div>
 
@@ -188,6 +198,23 @@
                 </button>
             </form>
         </section>
+        <!-- Modal -->
+        <div id="cardModal" class="fixed inset-0 flex items-center justify-center hidden z-50">
+            <div class="bg-white p-5 rounded-xl shadow-lg max-w-md w-full relative">
+                <!-- Close Button -->
+                <button id="closeModal" class="absolute top-2 right-2 text-gray-600 hover:text-black text-2xl">&times;</button>
+        
+                <!-- Modal Content -->
+                <img id="modalImage" class="rounded-xl w-full h-64 object-cover mb-4" src="" alt="">
+                <h3 id="modalTitle" class="text-xl font-bold mb-2"></h3>
+                <p id="modalDesc" class="text-gray-700 mb-3"></p>
+                <p class="font-bold text-lg">
+                    <i class="fa-solid fa-bangladeshi-taka-sign"></i>
+                    <span id="modalPrice"></span>
+                </p>
+            </div>
+        </div>
+
     </main>
 
     <!-- footer section -->
