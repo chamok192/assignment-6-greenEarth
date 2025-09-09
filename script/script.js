@@ -24,7 +24,10 @@ const displayCategory = (allCategories) => {
     for (let category of allCategories) {
         const categoryDiv = document.createElement('div');
         categoryDiv.innerHTML = `
-        <button onclick="loadCards(${category.category_name})" class=" w-full flex py-2 px-2 rounded-md">${category.category_name}</button>`
+         <button onclick="loadCards('${category.category_name}', this)" 
+                class="category-btn w-full flex py-2 px-2 rounded-md bg-white text-black mb-2">
+            ${category.category_name}
+        </button>`;
 
         categoryContainer.append(categoryDiv);
     }
@@ -32,12 +35,38 @@ const displayCategory = (allCategories) => {
 };
 
 // display cards 
-const loadCards = (category_name) => {
+const loadCards = (category_name = "All Tree", button = null) => {
     console.log(category_name);
     const url = `https://openapi.programming-hero.com/api/plants/`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displayCards(data.plants));
+        .then(data => {
+            let filteredCards = data.plants;
+            if (category_name !== "All Tree") {
+                filteredCards = data.plants.filter(card => card.category === category_name);
+            }
+            displayCards(filteredCards);
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('bg-[#157C3D]', 'text-white');
+                btn.classList.add('bg-white', 'text-black');
+            });
+
+            // Reset All Trees button
+            const allBtn = document.getElementById('all-trees-btn');
+            allBtn.classList.remove('bg-[#157C3D]', 'text-white');
+            allBtn.classList.add('bg-white', 'text-black');
+
+            // Highlight selected button
+            if (category_name === "All Tree") {
+                allBtn.classList.add('bg-[#157C3D]', 'text-white');
+                allBtn.classList.remove('bg-white', 'text-black');
+            } else if (button) {
+                button.classList.add('bg-[#157C3D]', 'text-white');
+                button.classList.remove('bg-white', 'text-black');
+            }
+        }
+        //displayCards(data.plants)
+        );
 }
 
 const displayCards = (cards) => {
