@@ -43,7 +43,7 @@ const loadCards = (category_name = "All Tree", button = null) => {
     const spinner = document.getElementById('spinner');
     const cardContainer = document.getElementById('card-container');
 
-    spinner.classList.remove('hidden');
+    spinner.classList.remove('display-none');
     console.log(category_name);
     const url = `https://openapi.programming-hero.com/api/plants`;
     fetch(url)
@@ -87,7 +87,7 @@ const loadCards = (category_name = "All Tree", button = null) => {
 //         cardDiv.innerHTML = `<div class="bg-white p-5 rounded-xl shadow-md  flex flex-col justify-between mb-5 md:mb-0">
 //                         <img class="rounded-xl h-[12rem] object-cover " src="${card.image}" alt="">
 //                         <h3 class="text-xl font-bold my-5">${escapeHtml(card.name || '')}</h3>
-//                         <p class="h-[3remrem]">${card.description ? escapeHtml(card.description.slice(0, 50)) + "..." : "No description available."}</p>
+//                         <p class="h-[3rem]">${card.description ? escapeHtml(card.description.slice(0, 50)) + "..." : "No description available."}</p>
 //                         <div class="flex justify-between items-center mt-3">
 //                             <button class="bg-[#DCFCE7] py-1 px-4 rounded-3xl font-semibold text-[#15803D] cursor-pointer">${escapeHtml(card.category || "")}</button>
 //                             <p class="font-bold text-lg"><i class="fa-solid fa-bangladeshi-taka-sign "></i>${card.price}</p>
